@@ -1,0 +1,900 @@
+1. Java - OOP
+- Chỉ định truy cập
+  + private: chỉ trong cùng lớp
+  + mặc định: chỉ các lớp cùng gói với nó (các lớp con khác gói của nó không truy cập được)
+  + protected: các lớp cùng gói với nó (và các lớp con khác gói của nó)
+  + public: mọi lớp đều có thể truy cập
+  
+  + https://cachhoc.net/2013/09/07/java-cac-muc-truy-cap-trong-java-modifier-in-java/
+  
+- final (hằng)
+  + Biến final không thay đổi được giá trị
+  + Phương thức final không override được
+  + Lớp final không kế thừa được
+  
+  + http://viettuts.vn/java/tu-khoa-final-trong-java
+  
+- static (tĩnh)
+  + Chỉ lấy bộ nhớ 1 lần, ghi nhớ giá trị của nó
+  + Truy cập biến static thông qua lớp chứ không phải thông qua thể hiện của lớp
+    . Ví dụ
+	  public class A {
+		public int x;
+		public static int y;
+	  }
+		
+	  public class B {
+		void main() {
+			int varY = A.y	//truy cập vào biến y thông qua lớp
+				
+			A a = new A();
+			int varX = a.x	//truy cập vào biến x thông qua thể hiện của lớp (object)
+		}
+	  }
+	
+  + http://viettuts.vn/java/tu-khoa-static-trong-java
+  
+- OOP (Object Oriented Program)
+  + Tính đóng gói
+    . Ẩn giấu thông tin, bảo vệ các trạng thái bên trong đối tượng
+	. Lợi ích như có thể tạo lớp read-only hoặc write-only bằng việc cài đặt phương thức setter hoặc getter.
+	. Ví dụ: các lớp model
+	
+	. http://viettuts.vn/java/tinh-dong-goi-trong-java
+	
+  + Tính kế thừa
+    . Lớp con sẽ được hưởng các phương thức, thuộc tính của của lớp cha
+	. Tuy nhiên chỉ truy cập được các thành viên là protected và public thôi
+	
+	. http://viettuts.vn/java/tinh-ke-thua-trong-java
+	
+  + Tính đa hình: thực hiện 1 hành động theo nhiều cách khác nhau
+    . Đa hình kiểu nạp chồng (overload) (lúc compile): cùng tên, khác danh sách tham số (không cần cùng kiểu trả về)
+	  > Ví dụ
+		class person {
+			void infor() {
+				system.out.print("person");
+			}
+			
+			void infor(String number) {
+				system.out.print("person" + number);
+			}
+		}
+		
+	. Đa hình kiểu ghi đè (override) (lúc runtime): cùng tên, cùng danh sách tham số (cùng kiểu trả về)
+	  > Ví dụ
+	    class person {
+			void infor() {
+				system.out.print("person");
+			}
+		}
+		
+		class employee extends person {
+			@override
+			void infor() {
+				system.out.print("employee");
+			}
+			
+			void main() {
+				person x = new employee();	//upcasting
+			}
+		}
+	
+	. http://viettuts.vn/java/tinh-da-hinh-trong-java
+		   
+  + Tính trừu tượng
+    . Loại bỏ tính phức tạp của đối tượng bằng cách đưa ra các thuộc tính, phương thức cần thiết của đối tượng (những cái chung)
+	. Để đạt sự trừu tượng hóa
+	  > Sử dụng abstract class
+	  > Sử dụng interface
+	. Ví dụ
+	  abstract class animal() {
+		int foot;
+		
+		abstract String voice()
+	  }
+	  
+	  class dog extends animal {
+		@override
+		String voice() {
+			system.out.print("gâu");
+		}
+	  }
+	  
+	  class cat extends animal {
+		@override
+		String voice() {
+			system.out.print("meo");
+		}
+	  }
+	  
+- abstract class và interface
+  + abstract class
+	. Là 1 lớp, không thể khởi tạo được
+	
+	. Các method thường được định nghĩa
+	. Các abstract method không được định nghĩa
+	
+	. 1 class thường chỉ extends được 1 abstract class
+	
+	. Lớp extends abstract class phải override lại các abstract method của nó
+	. Lớp extends abstract class có thể override hoặc không override lại các method thường
+	
+	. http://viettuts.vn/java/abstract-class-trong-java
+	
+  + interface
+    . Không phải là 1 lớp, các phương thức mặc định là public
+	
+	. Gồm abstract method không được định nghĩa
+	
+	. 1 class thường có thể implement được nhiều interface
+	
+	. Lớp implement interface phải override lại các abstract method của nó
+	. interface A có thể extends interface B để sử dụng các method trong B
+	  > Ví dụ A extends B
+			  C implement A
+			  C phải override lại các abstract method của cả A và B
+	
+	. http://viettuts.vn/java/interface-trong-java
+	
+  + Khi nào sử dụng
+    . abstract class
+	  > Xây dựng lớp cơ sở (chứa các thuộc tính, phương thức chung) để các lớp khác kế thừa từ nó
+	  
+	. interface
+	  > Giải quyết vấn đề đa kế thừa
+	  > Đưa ra bộ khung chuẩn cho các chức năng mà project cần có
+  
+  + http://viettuts.vn/java/su-khac-nhau-giua-abstract-class-va-interface
+  + https://viblo.asia/p/khac-nhau-giua-abstract-class-va-interface-khi-nao-dung-chung-ORNZq9YrZ0n
+	
+2. SQL
+- Tạo bảng
+  CREATE TABLE "tên bảng"
+  (
+		"tên cột 1"		"kiểu dữ liệu (size)",
+		"tên cột 2"		"kiểu dữ liệu (size)",
+		...
+  );
+
+- Xử lý cơ bản
+  + select: truy xuất dữ liệu
+  + insert: thêm dữ liệu
+  + update: cập nhật dữ liệu
+  + delete: xóa dữ liệu
+
+  + where: điều kiện cho từng bản ghi
+    . where A and B: dữ liệu thỏa mãn điều kiện A và B
+	. where A or B: dữ liệu thỏa mãn điều kiện A hoặc B
+	
+  + group by: phân nhóm các bản ghi
+    . group by name
+	
+  + having: điều kiện cho nhóm bản ghi
+  
+  + order by: sắp xếp danh sách trả về
+	. esc: tăng dần
+	. desc giảm dần
+	. Bỏ trống esc/desc thì mặc định là esc
+
+  + distinct: loại bỏ các bản ghi trùng
+
+  + limit: giới hạn số bản ghi trả về
+
+  + in: truy xuất dữ liệu là là 1 trong số các giá trị được nêu (not in thì ngược lại)
+	. where name in ("a", "b", "c")
+  
+  + between ... and ...: truy xuất dữ liệu trong 1 khoảng giá trị
+	. where age between 20 and 30
+  
+  + like: truy xuất dữ liệu giống với chuỗi (not like thì ngược lại)
+	. where name like "abc"
+	
+	. where name like "%abc"
+  
+  + as: tên thay thế
+	. select name as n
+	  from sinhvien
+      where n = "a"
+	  
+	. select sv.name, sc.name
+	  from sinhvien sv, school sc
+	
+  + inner join
+	. Lấy những bản ghi giao nhau trong 2 bảng
+	
+	. Cách xác định
+	  > Lấy từng bản ghi ở bảng 2 so với từng bản ghi ở bảng 1, nếu giao nhau thì lấy
+	  > Số bản ghi trả về là số cặp bản ghi giao nhau
+
+	. select *
+      from sinhvien inner join school		//bảng 1 là sinhvien, bảng 2 là school
+	  on sinhvien.school = school.name		//điều kiện giao giau
+	
+  + left joint
+    . Trả về tất cả các bản ghi ở bảng 1 kết hợp với các bản ghi ở bảng 2
+	
+	. Cách xác định
+	  > Lấy từng bản ghi ở bảng 2 so với từng bản ghi ở bảng 1, nếu giao nhau thì lấy + số bản ghi không giao nhau còn lại ở bảng 1
+	  > Số bản ghi trả về là số cặp bản ghi giao nhau + số bản ghi không giao nhau còn lại ở bảng 1
+	  > Nếu không giao nhau thì giá trị sẽ là null
+  
+	. select *
+      from sinhvien left join school		//bảng 1 là sinhvien, bảng 2 là school
+	  on sinhvien.school = school.name		//điều kiện giao giau
+	
+  + right join
+    . Trả về tất cả các bản ghi ở bảng 2 kết hợp với các bản ghi ở bảng 1
+	
+	. Cách xác định
+	  > Lấy từng bản ghi ở bảng 1 so với từng bản ghi ở bảng 2, nếu giao nhau thì lấy + số bản ghi không giao nhau còn lại ở bảng 2
+	  > Số bản ghi trả về là số cặp bản ghi giao nhau + số bản ghi không giao nhau còn lại ở bảng 2
+	  > Nếu không giao nhau thì giá trị sẽ là null
+  
+	. select *
+      from sinhvien right join school		//bảng 1 là sinhvien, bảng 2 là school
+	  on sinhvien.school = school.name		//điều kiện giao giau
+	
+  + full join
+    . Trả về tất cả các bản ghi được kết hợp từ bảng 1 và bảng 2
+  
+	. Cách xác định
+	  > Lấy từng bản ghi ở bảng 2 ghép với từng bản ghi ở bảng 1
+	  > Số bản ghi trả về là số bản ghi bảng 1 * số bản ghi bảng 2
+	
+	.select *
+     from sinhvien all join school		//bảng 1 là sinhvien, bảng 2 là school
+	
+- Xử lý tính toán trên nhóm các bản ghi
+  + Không có group by thì cả bảng được coi là 1 nhóm
+  + Chỉ dùng được trong select hoặc having
+	
+  + avg(): giá trị trung bình của cột
+	. select avg(age)
+      from sinhvien
+	
+  + count(); đếm số bản ghi trong bảng
+	. select count(*)
+      from sinhvien
+	. select count(distinct age)
+      from sinhvien
+	
+  + max(): lấy giá trị lớn nhất trong cột
+    . select max(age)
+      from sinhvien
+	
+  + min(): lấy giá trị nhỏ nhất trong cột
+	. select min(age)
+      from sinhvien
+
+  + sum(): lấy tổng giá trị của cột
+	. select sum(age)
+      from sinhvien	
+	
+- http://webcoban.vn/mysql/
+
+3. Cấu trúc dữ liệu và giải thuật
+- Sắp xếp
+  + Thường gặp: Selection Sort(lựa chọn), Bubble Sort(nổi bọt), Insertion Sort(lựa chọn), Interchange Sort(đổi chỗ cố định)
+  + Ý tưởng thuật toán : https://www.slideshare.net/tuoitrecomvn/slide-5-23855078
+  + Selection Sort
+    . https://vi.wikipedia.org/wiki/S%E1%BA%AFp_x%E1%BA%BFp_ch%E1%BB%8Dn
+  + Interchange Sort
+    . https://cunglaptrinh.blogspot.com/2015/03/thuat-toan-sap-xep-interchange-sort.html
+	
+4. Android
+- Activity
+  + Khái niệm
+	. Là thành phần cung cấp nơi để vẽ UI cho app
+	. Thường sẽ toàn màn hình, cũng có thể nhỏ hơn màn hình và nổi trên Activity khác
+	
+  + Vòng đời
+	. onCreat() 
+	  > Chỉ chạy 1 lần lúc khởi tạo Activity
+	  
+	. onStart()
+	  > Hiển thị View
+	  
+	. onResume()
+	  > User có thể tương tác được
+	  
+	. onPause() 
+	  > Được gọi khi Activity bị che bởi 1 Activity khác, Dialog, ... nhưng không che toàn bộ
+	  > Activity vẫn lưu trữ trạng thái, thông tin, nhưng vẫn có thể bị kill khi bộ nhớ hệ thống cực thấp
+	  
+	. onStop() 
+	  > Được gọi khi Activity bị che hoàn toàn bởi 1 Activity khác
+	  > Activity vẫn lưu trữ trạng thái, thông tin, nhưng sẽ bị kill khi bộ nhớ cần cho nơi khác
+	  
+	. onDestroy()
+	  > Được gọi trước khi Activity bị xóa
+	  
+	. Vòng đời
+	  > Entire lifetime (Toàn bộ vòng đời) : Từ onCreat() đến onDestroy()
+	  > Visible lifetime (Hiển thị cho user thấy) : Từ onStart() đến onStop()
+	  > Foreground lifetime (Tương tác được với user) : Từ onResume() đến onPause()
+	  
+	. Lưu trạng thái (savedInstanceState)
+	  > Hàm onSaveInstanceState() : lưu trữ dữ liệu, được gọi sau onPause() và trước onStop()
+	  > Hàm onRestoreInstanceState() : khôi phục dữ liệu đã lưu khi quay trở lại Activity, được gọi sau onStart() và trước onResume()
+	  
+  + Tasks and Back Stack
+	. Khái niệm
+	  > Tasks là tập các Activity mà user tương tác, những Activity này được xếp trong Back Stack
+	  > Quản lý Tasks thông qua thuộc tính khai báo trong file Manifest hoặc qua Flag của Intent
+	  
+	. Quản lý Tasks trong Manifest
+	  > taskAffinity
+	    # Được khai báo trong Root Activity
+		# Khi nhấn button Task, nếu app được khai báo taskAffinity thì sẽ show hết các Task ra, nếu không thì chỉ show Task Foreground thôi
+	  
+	. Launch modes trong Manifest
+	  > standard (mặc định)
+		# Activity được gọi sẽ được khởi tạo mới và thêm vào đỉnh Back Stack
+	    
+		# Ví dụ có Back Stack A -> B -> C -> D
+		  Từ D gọi D thì Back Stack thành A -> B -> C -> D -> D
+		
+	  > singleTop
+		# Activity (singerTop) được gọi đang ở đỉnh Back Stack thì Activity đó sẽ được gọi lại thông qua onNewIntent() chứ không khởi tạo mới, nếu không sẽ khởi tạo mới Activity và thêm vào đỉnh Back Stack
+	    
+		# Ví dụ có Back Stack A -> B -> C -> D (D được khai báo singleTop)
+		  Từ D gọi D thì Back Stack thành A -> B -> C -> D
+		  Từ D gọi B thì Back Stack thành A -> B -> C -> D -> B
+		  Từ B gọi D thì Back Stack thành A -> B -> C -> D -> B -> D
+		
+	  > singleTask
+	    # TH1 : Có taskAffinity
+		  @ Nếu Activity (singleTask) được gọi đã có trong Back Stack thì Activity đó sẽ được gọi lại thông qua onNewIntent() chứ không khởi tạo mới và sẽ xóa các Activity phía trên nó trong Back Stack, nếu không hệ thống sẽ tạo 1 Task mới
+		  
+		  @ Activity được gọi sẽ là Root của Task mới đó
+		  
+		  @ Khi nhấn button Task thì sẽ show hết các Task ra
+				
+		  @ Ví dụ Back Stack có A (B được khai báo singleTask)
+		    Từ A gọi B thì Back Stack thành A			(Task 1)	(Background Task)
+	 	  							        B			(Task 2)	(Foreground Task)
+			Từ B gọi C thì Back Stack thành A			(Task 1)	
+											B -> C		(Task 2)	
+		    Từ C gọi B thì Back Stack thành A			(Task 1)	(Background Task)
+											B			(Task 2)	(Foreground Task)
+				
+		# TH2 : Không có taskAffinity
+		  @ Nếu Activity (singleTask) được gọi đã có trong Back Stack thì Activity đó sẽ được gọi lại thông qua onNewIntent() chứ không khởi tạo mới và sẽ xóa các Activity phía trên nó trong Back Stack, nếu không sẽ khởi tạo mới Activity và thêm vào đỉnh Back Stack
+				
+		  @ Ví dụ có Back Stack A (B được khai báo singleTask)
+		    Từ A gọi B thì Back Stack thành A -> B
+			Từ B gọi C thì Back Stack thành A -> B -> C
+			Từ C gọi D thì Back Stack thành A -> B -> C -> D
+			Từ D gọi B thì Back Stack thành A -> B
+	  
+	  > singleInstance
+		# Nếu Activity (singleInstance) được gọi đã có trong Back Stack thì Activity đó sẽ được gọi lại thông qua onNewIntent() chứ không khởi tạo mới, nếu không hệ thống sẽ tạo 1 Task mới
+		
+		# Activity được gọi sẽ là Root và là Activity duy nhất của Task mới đó
+		
+		# Khi nhấn button Task, nếu có taskAffinity thì sẽ show hết các Task ra, nếu không thì chỉ show Task đang Foreground thôi
+		
+		# Ví dụ có Back Stack A (B được khai báo singleInstance)
+		  Từ A gọi B thì Back Stack thành A					(Task 1)	(Background Task)
+										  B					(Task 2)	(Foreground Task)
+		  Từ B gọi C thì Back Stack thành A	-> C			(Task 1)	(Foreground Task)
+										  B					(Task 2)	(Background Task)
+		  Từ C gọi B thì Back Stack thành A -> C			(Task 1)	(Background Task)
+										  B					(Task 2)	(Foreground Task)
+		  Từ B gọi D thì Back Stack thành A -> C -> D		(Task 1)	(Foreground Task)
+										  B					(Task 2)	(Background Task)
+	  
+	  > https://www.youtube.com/watch?v=m8sf0UkJkxo&list=PLfuE3hOAeWhY8fkzCluHakmK9A3bJsGR0	
+	
+	. Launch modes qua Flag của Intent
+	  > FLAG_ACTIVITY_NEW_TASK
+	    # Tương tự như singerTask (Nó không hoạt động, đây là 1 bug trong hệ thống Android)
+		# https://stackoverflow.com/questions/9772927/flag-activity-new-task-clarification-needed
+	  
+	  > FLAG_ACTIVITY_SINGLE_TOP
+	    # Tương tự như singerTop
+	  
+	  > FLAG_ACTIVITY_CLEAR_TOP
+	    # Nếu Activity được gọi đã có trong Back Stack thì hệ thống sẽ xóa các Activity ở trên nó trong Back Stack
+		# Activity được gọi sẽ được khởi tạo lại (gọi vào onCreat())
+		
+	  > https://www.youtube.com/watch?v=ZVW9jZgfm7k&index=8&list=PLfuE3hOAeWhY8fkzCluHakmK9A3bJsGR0
+	  
+	. Get result từ Activity
+	  > Activity cha gọi đến Activity con bằng startActivityForResult() 
+	    # Khi Activity con hủy mà trước đó chưa setResult() thì Activity cha sẽ nhận được RESULT_CODE là RESULT_CANCELED
+		# Khi Activity con hủy mà trước đó đã setResult() thì Activity cha sẽ nhận được RESULT_CODE là RESULT_CODE được set
+	
+	  > Activity cha khi được quay trở lại sẽ gọi onActivityResult() trước onResume()
+	
+	. etc
+	
+  + Lưu ý thêm
+	. 1 Activity được "gọi" thì sẽ chỉ gọi 1 trong 2 hàm onCreate() hoặc onNewIntent()
+	
+	. Gọi Activity (singleInstance) bằng bằng startActivity() và startActivityForResult() sẽ khác nhau
+	  > Gọi bằng startActivity() thì hoạt động như bình thường
+	  
+	  > Gọi bằng startActivityForResult()
+	    # Nếu Activity (singleInstance) được gọi đã có trong Back Stack thì Activity đó sẽ được gọi lại thông qua onNewIntent() chứ không khởi tạo mới và sẽ xóa các Activity phía trên nó trong Back Stack, nếu không hệ thống sẽ tạo 1 Task mới
+		
+		# Activity được gọi sẽ là Root nhưng không phải là Activity duy nhất của Task
+	  
+	    # Ví dụ Back Stack có A (B được khai báo singleInstance)
+		  Từ A gọi B thì Back Stack thành A				(Task 1)	(Background Task)
+				  						  B				(Task 2)	(Foreground Task)
+		  Từ B gọi C thì Back Stack thành A				(Task 1)	
+										  B -> C		(Task 2)	
+		  Từ C gọi B thì Back Stack thành A				(Task 1)	(Background Task)
+										  B				(Task 2)	(Foreground Task)
+	  
+	. Khi app đang có nhiều Task (Giả sử 2 Task)
+	  > Ví dụ 1 Back Stack đang có A		(Task 1)	(Background)
+								   B		(Task 2)	(Foreground)
+		Nhấn button Back thì Back Stack thành A 		
+		(Tức khi Activity trong Back Stack của Task 2 không còn thì sẽ quay lại Activity Top trong Back Stack của Task 1)
+		
+	  > Ví dụ 2 Back Stack đang có A		(Task 1)	(Background)
+								   B		(Task 2)	(Foreground)
+		Nhấn button Task rồi chọn Task 2 sau đó nhấn button Back thì từ B không back về A được (tương tự khi chọn Task 1)
+		Khi Activity (singleTask hoặc singleInstance) được gọi lại thì từ Task 2 lại back về Task 1 được
+		
+	. Sử dụng launch modes qua intent sẽ override lại launch modes trong Manifest (trừ singleInstance là không override được)
+	
+	. Khi xoay màn hình thì Activity đang hiển thị sẽ được khởi tạo lại
+	
+  + https://developer.android.com/reference/android/app/Activity					(trong REFERENCE)
+  + https://developer.android.com/guide/components/activities/intro-activities 		(trong GUIDES)			(Xem các mục bên trái)
+  + https://developer.android.com/guide/topics/manifest/activity-element#lmode		(trong Manifest.xml)
+	
+- Service	
+  + Khái niệm
+    . Là thành phần có thể thực hiện các hoạt động dài trong Background ngay cả khi không tương tác với user thậm chí khi app bị kill
+	. Không có UI
+	. Chạy trên Main thread
+  
+  + Phân loại (Nên hiểu theo cách 1)
+    . Cách 1 : 2 loại
+	  # unbound
+	    @ Được gọi bằng startService()
+		@ Client không tương tác được với Service
+		@ Vẫn hoạt động khi thành phần khởi chạy nó bị hủy
+		@ Bị hủy khi gọi stopSeft() hoặc 1 thành phần khởi chạy gọi stopService()
+	  
+	  # bound
+	    @ Được gọi bằng bindService()
+		@ Cung cấp 1 interface client-server (IBinder) cho phép Client tương tác Service (gửi request, nhận response)
+		@ Dừng khi thành phần khởi chạy gọi unbindService()
+		@ Bị hủy khi toàn bộ thành phần khởi chạy nó unbind hoặc bị hủy
+		
+	. Cách 2 : 3 loại
+      # Foreground
+		@ Thực hiện thao tác gây chú ý tới user
+		@ Foreground Service phải hiển thị Notification
+		@ Foreground Service vẫn chạy ngay cả khi user không tương tác với app
+		@ Khi ở trạng thái Foreground thì Service sẽ không bị kill khi bộ nhớ thấp
+	  
+		@ Ví dụ sử dụng Foreground Service để chơi nhạc (hiển thị trên Notification)
+	  
+	  # Background
+		@ Thực hiện thao tác không được user chú ý trực tiếp
+		
+		@ Ví dụ sử dụng Background Service để nhận tin nhắn, mail, hẹn giờ ...
+	  
+	  # Bound  
+		@ Tương tự trong cách 1
+	  
+  + STICKY trong unbound Service
+    . START_STICKY
+	  > Khi Service bị hủy vì 1 lí do nào (ví dụ như bộ nhớ thấp, ...) đó thì Service sẽ được khởi tạo lại
+	  > Trả về Intent null
+	  
+	. START_NO_STICKY
+	  > Khi Service bị hủy vì 1 lí do nào đó (ví dụ như bộ nhớ thấp, ...) thì Service sẽ không được khởi tạo lại
+	  
+	. START_REDELIVER_INTENT
+	  > Khi Service bị hủy vì 1 lí do nào đó (ví dụ như bộ nhớ thấp, ...) thì Service sẽ được khởi tạo lại
+	  > Trả về Intent trước đó
+	  
+  + Tương tác Client với bound Service
+    . Sử dụng Binder class
+	  > Có thể truy cập trực tiếp tới các public method trong Service
+	  
+	  > https://developer.android.com/guide/components/bound-services#Binder
+	
+	. Sử dụng Messenger
+	. Sử dụng AIDL
+  
+  + Vòng đời
+	. onCreat()
+	  > Chỉ được gọi lần đầu trong suốt vòng đời của Service
+	  
+	. onStartCommand()
+	  > Được gọi khi thành phần khởi chạy Service bằng startService()
+	  
+	. onBind()
+	  > Được gọi khi thành phần khởi chạy Service bằng bindService()
+	  
+	. onUnbind()
+	  > Được gọi khi thành phần khởi chạy Service gọi unbindService() hoặc bị hủy
+	  
+	. onDestroy()
+	  > Được gọi khi Service bị hủy
+	  
+  + Lưu ý
+    . Khi app bị kill sẽ gọi vào onTaskRemove() trong Service
+	. IntentService
+	  > Là 1 lớp con của Service
+	  > Chạy trên 1 luồng riêng ở Background
+	  > Tạo 1 hàng đợi để thực hiện request
+	  > IntentService sẽ hủy khi thực hiện hết các request
+	  
+  + https://developer.android.com/reference/android/app/Service		(trong REFERENCE)
+  + https://developer.android.com/guide/components/services			(trong GUIDES)		(Xem các mục bên trái)
+  + E:\Android\Lesson\Service
+	
+- Broadcast Recevier
+  + Khái niệm
+    . Lắng nghe các sự kiện (như là thay đổi mạng, tin nhắn, ...) thông qua Intent rồi xử lý
+	. Chạy trên Background thread (có thể chạy ngay cả khi app bị kill)
+	. Xử lý sự kiện trên Main thread
+  
+  + Đăng ký lắng nghe Broadcast Receiver
+	. Class extends Broadcast Receiver có thể là 1 lớp riêng hoặc 1 lớp con
+	
+    . Cách 1 : Trong Manifest	  
+	  > TH1
+	    # Class extends Broadcast Receiver là 1 lớp riêng
+	  
+	    <receiver android:name=".MyReceiver">
+            <intent-filter>
+                <action android:name="..." />
+            </intent-filter>
+        </receiver>
+	  
+	  > TH2
+	    @ Class extends Broadcast Receiver là 1 lớp con trong 1 lớp khác (Lớp con phải là static class)
+
+	    <receiver android:name="."Activity$MyReceiver">
+            <intent-filter>
+                <action android:name="..." />
+            </intent-filter>
+        </receiver>
+	
+	. Cách 2 : Trong code
+	  > TH1
+	    # Đăng ký Receiver với Context của Activity
+		# Receiver bị hủy khi Activity đăng ký bị hủy
+		
+		  MyReceiver receiver = new MyReceiver();
+		  IntentFilter intentFilter = new IntentFilter();
+		  intentFilter.addAction("...");
+		  registerReceiver(receiver, intentFilter);
+		  
+	  > TH2
+	    # Đăng ký Receiver với Context của app
+		# Receiver bị hủy khi app bị kill
+		
+		  MyReceiver receiver = new MyReceiver();
+		  IntentFilter intentFilter = new IntentFilter();
+		  intentFilter.addAction("...");
+		  getApplicationContext().registerReceiver(receiver, intentFilter);
+  
+  + Gửi Broadcast Receiver
+    . sendBroadCast()
+	  > Gửi tới toàn bộ Receiver (cả Receiver trong app hiện tại và Receiver trong app khác)
+	  
+	. LocalBroadcastManager.getInstance(Context).sendBroadCast()
+	  > Gửi tới Receiver trong app hiện tại
+	  > không gửi tới Receiver trong app khác được
+	  
+	. sendOrderedBroadcast()
+  
+  + Hủy Broadcast Receiver
+    . Receiver được đăng ký trong Manifest
+	
+	  ComponentName component = new ComponentName(Context, Receiver.class);
+      getPackageManager().setComponentEnabledSetting(component, PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+
+	. Receiver được đăng ký trong code
+      > receiver là thể hiện của Class MyReceiver khi đăng ký
+	
+	    unregisterReceiver(receiver)
+  
+  + Lưu ý
+    . Action trong IntentFilter khi sendBroadCast phải giống với Action trong IntentFilter ở Receiver thì mới được xử lý
+    . Action có thể là của hệ thống (1 chuỗi cố định có sẵn)
+	. Action có thể là của Client (1 chuỗi ngẫu nhiên tự tạo)
+	
+	. Khi gửi, nhận Broadcast Receiver có Permissions thì app phải được cấp Permissions
+	  # https://developer.android.com/guide/components/broadcasts#restrict-broadcasts-permissions
+	  
+	. Intent dùng để startActivity, startService hay tương tự không thể dùng để sendBroadCast và ngược lại
+	
+	. Thiết lâp thuộc tính android:exported trong Manifest
+	  > Bằng "true" thì cho phép app nhận các Broadcast từ các app khác
+	  > Bằng "false" thì app chỉ nhận Broadcast của app thôi
+	  
+	. Khi Broadcast Receiver được đăng ký trong Manifest bị hủy 
+	  > Receiver đó sẽ không tự đăng ký lại được trong lần mở app tiếp theo
+	  > Muốn đăng ký lại thì phải sử dụng code
+	  
+		ComponentName component = new ComponentName(Context, Receiver.class);
+		getPackageManager().setComponentEnabledSetting(component, PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
+	
+  + https://developer.android.com/guide/components/broadcasts	(trong GUIDES)	(Xem các mục bên trái)
+  + E:\Android\Lesson\Broadcast Receiver
+
+- Content Provider	
+
+
+(so sánh)
+- server và intentservice https://stackoverflow.com/questions/15524280/service-vs-intentservice
+	
+- Fragment
+  + Khái niệm
+    . Là 1 thành phần của giao diện người dùng
+	. Có thể thiết kế nhiều Fragment trong 1 Activity
+	. Được dùng để dễ thiết kế, tối ưu UI
+	
+  + Vòng đời
+    . onAttach()
+	  > Fragment được liên kết với Activity
+	  
+    . onCreate()
+	  > Được gọi khi tạo Fragment
+	
+	. onCreateView()
+	  > Được gọi khi vẽ UI
+	  
+	. onActivityCreate()
+	  > Được gọi khi Activity chạy xong onCreate()
+	  
+	. onDestroyView()
+	  > Được gọi khi View của Fragment bị xóa
+	  
+	. onDetach()
+	  > Được gọi khi Fragment không liên quan gì đến Activity nữa
+	  
+	. onStart(), onResume(), onPause(), onStop() tương tự như Activity
+	
+	. Vòng đời
+	  > Entire lifetime (Toàn bộ vòng đời) : Từ onAttach() đến onDetach()
+	  > Visible lifetime (Hiển thị cho user thấy) : Từ onStart() đến onStop()
+	  > Foreground lifetime (Tương tác được với user) : Từ onResume() đến onPause()
+	  
+  + Mỗi quan hệ vòng đợi Fragment với Activity
+    . Activity gọi onCreate()
+	. Fragment gọi xong onAttach(), onCreate(), onCreateView(), onActivityCreate()
+	
+	. Activity gọi onStart()
+	. Fragment gọi onStart()
+	
+	. Activity gọi onResume()
+	. Fragment gọi onResume()
+	  
+	. Activity gọi onPause()
+	. Fragment gọi onPause()
+
+	. Activity gọi onStop()
+	. Fragment gọi onStop()
+
+	. Activity gọi onDestroy()
+	. Fragment gọi onDestroyView(), onDestroy(), onDetach()
+	
+  + Tạo Fragment
+    . Tạo trực tiếp trong xml
+	. Tạo trong code Java
+	
+  + Thao tác với Fragment
+    . add
+	  > Các Fragment sẽ chồng lên nhau
+	  > Có thể click xuyên qua các Fragment
+	  > Các Fragment đều đang running
+	  
+	. find
+	  > Tìm theo id
+	    . Chỉ tìm được Fragment tĩnh (được khai báo trong xml)
+		. id là id của fragment trong xml
+		
+	  > Tìm theo tag
+	    . Tìm được cả Fragment tĩnh và Fragment động
+		. tag là chuỗi mà ta định nghĩa nó khi add hoặc replace Fragment
+	  
+	. remove
+	  > Xóa Fragment thông qua id hoặc tag
+	  
+    . replace
+	  > container sẽ remove hết các Fragment cũ rồi thêm Fragment mới
+	  
+  + Truyền dữ liệu
+    . Cách 1
+	  > Activity implement 1 Interface
+	  > Fragment A truyền data về Activity thông qua Interface
+	  > Activity nhận data rồi truyền đến Fragment B
+	    # TH1
+		  Khởi tạo rồi truyền đến B bằng setArguments()
+		
+		# TH2
+		  Tìm instance Fragment B, gọi đến các public method trong Fragment B
+	  
+	. Cách 2
+	  > Fragment A sẽ implement 1 Interface
+	  > Fragment A sẽ cung cấp public method để lấy instance của Interface đó
+	    # Ví dụ
+		  class FragmentA implement InterfaceA {
+				
+		  }
+	  
+	  > Các thành phần khác (Activity, Fragment, ...) sẽ gọi public method trên để lấy instance của Interface rồi dùng để CallBack lại
+	
+  + Lưu ý
+    . Khi các Fragment được add vào BackStack thì khi nhấn nút back sẽ quay lại Fragment trước đó
+
+- SQLite
+  + Khái niệm
+    . Là 1 CSDL nhỏ, gọn, nhẹ
+	. Lưu trữ trong ứng dụng
+	
+  + Tạo Database
+    . Tạo 1 lớp extends từ class SQLiteQpenHelper
+	. onCreate()
+	  > Chỉ được gọi khi thỏa mãn cả 2 điều kiện
+	    # Database chưa được khởi tạo 
+		# Có 1 trong các yêu cầu CRUD tới Database 
+	  
+  + Thêm data (Create)
+    . Mở Database
+	  > SQLiteDatabase database = getWritableDatabase();
+	
+	. Tạo 1 ContentValues để put data vào
+	  > ContentValues values = new ContentValues();
+	
+	. Insert data vào Database 
+	  database.insert();
+	
+	. Đóng Database
+	  > database.close();
+	  
+  + Truy vấn data (Read)
+    . Mở Database
+	  > SQLiteDatabase database = getReadableDatabase();
+	  
+	. Tạo 1 Cursor để lấy kết quả trả về
+	  > Cursor cursor = database.query();
+	  
+	. Duyệt list kết quả trả về để lấy dữ liệu
+	  > cursor.moveToNext()
+	  > cursor.moveToFirst()
+	  > ...
+	
+	. Đóng Cursor, Database
+	  > cursor.close();
+	  > database.close();
+	  
+  + Cập nhật data (Update)	
+    . Mở Database
+	  > SQLiteDatabase database = getWritableDatabase();
+	  
+	. Tạo 1 ContentValues để put data vào
+	  > ContentValues values = new ContentValues();
+	
+	. Update data vào Database 
+	  database.update();
+	  
+	. Đóng Database
+	  > database.close();
+	  
+  + Xóa data (Delete)
+    . Mở Database
+	  > SQLiteDatabase database = getWritableDatabase();
+	  
+	. Delete data
+	  database.delete();
+	  
+	. Đóng Database
+	  > database.close();
+	  
+  + Đọc Database có sẵn từ Asset
+    . pathDatabase = context.getFilesDir().getParent() + "/databases/" + "tên Database trong Asset";
+	
+	. Check Database đã có hay chưa
+	  > SQLiteDatabase.openDatabase(duongDanDatabase, null, SQLiteDatabase.OPEN_READWRITE);
+	  > Nếu lỗi thì chưa có, thực hiện copy Database từ Asset vào Database của App
+	  
+	. https://github.com/hungtd1110/LearningEnglish/blob/master/app/src/main/java/com/example/admin/learningenglish/databases/Database.java
+	
+  + Lưu ý
+    . getWritableDatabase()
+	  > Mở Database để ghi
+	
+	. getReadableDatabase()
+	  > Mở Database để đọc
+	  
+	. Các phương thức CUD trên có thể thay bằng cách
+	  > String query = "...";			//lệnh sql thêm, sửa, xóa
+	  > database.execSQL(query);
+	  
+	. Phương thức R trên có thể thay bằng cách
+	  > String query = "...";			//lệnh sql truy vấn
+	  > database.rawQuery(query);
+	  
+	
+  + https://thangcoder.com/lap-trinh-android/hoc-lap-trinh-android-nang-cao/sqlite-trong-lap-trinh-android
+  + E:\Android\Lesson\Database\CSDL SQLite (Thang Coder)
+	
+- MVP
+  + M (Model)
+    . Xử lý data logic
+	
+  + V (View)
+    . Hiển thị dữ liệu lên view
+  
+  + P (Presenter)
+    . Xử lý các bussiness login đơn giản
+  
+- Design Pattern
+  + Singleton
+    . Mục đích
+	  > Tạo ra 1 đối tượng duy nhất tồn tại trong suốt vòng đời của ứng dụng
+	  > Ví dụ sử dụng để tạo 1 lớp cầu nối với Database, 1 lớp quản lý và lưu trữ đảm bảo tính thống nhất, ...
+	  
+	. Triển khai
+	  > public class Singleton {
+			private static Singleton instance;
+			
+			private Singleton() {
+			
+			}
+			
+			public static Singleton getInstance() {
+				if (instance == null) {
+					instance = new Singleton();
+				}
+				return instance;
+			}
+		}
+		
+	. https://viblo.asia/p/design-pattern-in-oop-part-1-WrJvYKdAeVO
+	. https://viblo.asia/p/singleton-pattern-trong-java-aWj53838K6m
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+

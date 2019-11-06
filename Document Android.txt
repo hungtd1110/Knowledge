@@ -1,0 +1,587 @@
+1. Note
+- Tổng quan Android
+  + Trang chủ: https://developer.android.com/index.html
+  + Training (của Google): https://developers.google.com/training/android/
+  + Tutorial: https://vietjack.com/android/index.jsp
+  + Architecture: https://viblo.asia/p/kien-truc-cua-he-dieu-hanh-android-PaLGDYdaelX
+  + Component: https://gioilaptrinh.wordpress.com/2014/10/11/bai-hoc-android-buoi-4-cac-thanh-phan-co-ban-trong-mot-ung-dung-android/
+
+- Tổng hợp các thư viện cho Android
+  + https://snowdream.github.io/awesome-android/
+  
+- Thêm thư viện, module vào Android
+  + http://o7planning.org/vi/10525/lam-sao-them-thu-vien-ben-ngoai-vao-du-an-android-trong-android-studio
+  
+- Tai file apk
+  http://apk-dl.com/
+
+- Thiết kế UI
+  + https://material.io/design/
+
+- Cách đặt tên biến, file trong Android
+  + https://viblo.asia/p/lam-the-nao-de-dat-ten-resource-mot-cach-hieu-qua-trong-lap-trinh-android-6BkGyK6BR5aV
+  + https://hungsonandroid.wordpress.com/2016/10/17/androidnaming-convention/
+
+- Tổ chức thư mục trong Android
+  + https://kipalog.com/posts/ANDROID--Cach-to-chuc-thu-muc-cho-project
+  
+  + Mô hình MVP
+    . https://codeanhnocobug.wordpress.com/2016/10/14/tong-quan-ve-mvp-va-cach-implement-part-1/
+	. https://codeanhnocobug.wordpress.com/2016/10/21/tong-quan-ve-mvp-va-cach-implement-part-2/
+	. https://androidcoban.com/vi-du-trien-khai-mo-hinh-mvp-trong-android.html
+	. E:\Android\Lesson\Design Pattern\MVP Pattern
+
+- Icon cho ứng dụng
+  + https://www.flaticon.com/
+  + https://vn.123rf.com/ 
+  + Image Asset, Vector Asset trong AndroidStudio
+
+- Kết nối smartphone với laptop (File, camera, Screen, ...)
+  + Cài "Airdroid" lên smartphone
+  + Dùng smartphone phát wifi (không cần mạng)
+  + Kết nối Laptop vào mạng mà smartphone phát
+  + Vào trình duyệt web trên laptop gõ địa chỉ ip mà "Airdroid" cung cấp để kết nối
+
+- Quản lý database
+  + SQLite Manage (dùng trên firefox)
+    . http://laptrinhandroid.vn/gioi-thieu-ve-sqlite-va-cong-cu-sqlite-manager-trong-android/
+	
+  + DB Browser for SQLite (dùng trên windows)
+    . http://sqlitebrowser.org/ 
+  
+- Lấy size screen
+  + Đang ở activity
+    Display display = getWindowManager().getDefaultDisplay();
+	DisplayMetrics displayMetrics = new DisplayMetrics();
+    display.getMetrics(displayMetrics);
+	
+	//lấy size theo dp (nếu lấy theo px thì bỏ displayMetrics.density đi)
+	float width = displayMetrics.widthPixels / displayMetrics.density;
+	float height = displayMetrics.heightPixels / displayMetrics.density;
+	
+  + Không đang ở activity
+    WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+	Display display = windowManager.getDefaultDisplay();
+	(Tiếp theo tương tự như phần ở activity)
+	
+- Đơn vị đo
+  + http://laptrinhandroid.vn/lap-trinh-android-cac-don-vi-do-co-ban/
+  + https://kipalog.com/posts/Android-tu-co-ban-cho-den-nang-cao---Supporting-Multiple-Screens--p1
+  
+- Thiết kế đa màn hình
+  + Dùng cho LinearLayout:
+    . https://tinhte.vn/threads/can-hoi-ve-android-xml-and-multiple-screens.2107907/
+	
+	. Lưu ý
+	  > Xét theo chiều ngang (orientation = horizontal) thì phải để "layout_width" của các view con là "0dp"
+	  > Xét theo chiều dọc (orientation = vertical) thì phải để "layout_height" của các view con là "0dp"
+	  
+  + Dùng cho RelaytiveLayout:
+    . https://www.androidauthority.com/using-the-android-percent-support-library-630715/
+    . https://developer.android.com/reference/android/support/percent/PercentRelativeLayout
+	
+  + Tạo file dimens cho từng màn hình (tạo thủ công bằng tay)
+    . Trong khi tạo "Value resource file", tại bảng "Available qualifiers" chọn "Screen Width"
+	. Ghi kích thước màn hình muốn thiết kế rồi "OK"
+	
+  + https://viblo.asia/p/android-thiet-ke-giao-dien-da-man-hinh-trong-android-gGJ592bpKX2 (tạo 1 màn hình mẫu rồi code tự sinh cho các màn hình còn lại)
+    . Xem demo trên github để rõ hơn
+	  > https://github.com/oBuiTienDat/screen/blob/master/build.gradle
+	  
+    . Chú ý file tên của values/dimens (tùy thoe version IDE là sw360dp hoặc w360dp, ...)
+  
+- Ẩn View 
+  + Chỉ ẩn hình ảnh của view: view.setVisibility(View.INVISIBLE);
+  + Ẩn hình ảnh và vị trí của view: view.setVisibility(View.GONE);
+  
+- Inflate view (nên dùng theo cách 1)
+  + Cách 1
+	LayoutInflater inflater = LayoutInflater.from(Context);
+	View view = inflater.inflate(R.layout.my_layout, ViewGroup, false);
+	
+  + Cách 2
+	View view = View.inflate(Context, R.layout.my_layout, ViewGroup);
+	
+  + Lưu ý
+    . Nếu có ViewGroup thì điền vào, còn không có thì có thể để là "null"
+  
+- Thao tác với màn hình (Gesture)
+  + E:\Android\Lesson\Gesture
+  
+- Truyền lấy dữ liệu giữa các lớp (Activity, Fragment, Adapter, ...)
+  + Sử dụng các phương thức đặc trưng của lớp:
+    . Fragment sẽ thông qua hàm (get/set)Arguments()
+	. https://dotrinh.com/truyen-du-lieu-giua-2-fragment-trong-android/
+	  
+  + Sử dụng hàm public, interface
+  
+- Full screen
+  + https://developer.android.com/training/system-ui/immersive
+  
+- Kế thừa layout
+  + https://developer.android.com/training/improving-layouts/reusing-layouts
+  + https://trachanhso.net/tai-su-dung-layout-voi-include-va-merge-trong-android/
+
+2. Widget
+- ActionBar, ToolBar
+  + https://xuanthulab.net/toolbar-actionbar-trong-lap-trinh-android.html
+  
+  + Lưu ý
+    . Phải hủy ActionBar mặc định (sử dụng theme NoActionBar) thì mới thêm ToolBar được
+	  <item name="windowActionBar">false</item>
+      <item name="windowNoTitle">false</item>
+  
+- NavigationDrawer
+  + https://viblo.asia/p/cach-tao-navigation-drawer-ByEZk0NElQ0
+  
+  + Kiểm tra xem drawer có đang được mở không
+	drawerMain.isDrawerOpen(Gravity.LEFT)
+	
+  + Đóng drawer
+	drawerMain.closeDrawers()
+	drawerMain.closeDrawer(Gravity.LEFT);
+	
+  + Mở drawer
+	drawerMain.openDrawer(Gravity.LEFT);
+	
+  + Hiển thị màu của icon trên navigation: navigationView.setItemIconTintList(null);
+  
+- BottomNavigation
+  + https://viblo.asia/p/tao-bottom-bar-giong-google-DKBedaDzkdX
+  + https://medium.com/@hitherejoe/exploring-the-android-design-support-library-bottom-navigation-drawer-548de699e8e0
+  
+- ViewFlipper
+  + http://www.hiepsiit.com/khoa-hoc/android/viewflipper/53/58
+  + E:\Android\Lesson\Widget\ViewFliper
+  
+- ViewPager
+  + Chỉ ViewPager
+    . E:\Android\Lesson\Widget\ViewPager
+	. https://viblo.asia/p/adapting-viewpager-in-android-yMnKM3YEl7P
+	
+  + ViewPager với Tab
+    . https://github.com/wasabeef/awesome-android-ui/blob/master/pages/ViewPager.md
+	. https://viblo.asia/p/tao-material-design-tab-trong-ung-dung-android-XL6lAP6NZek
+	
+	. Thay đổi màu text Tab
+	  app:tabSelectedTextColor="color_selected"
+	  app:tabTextColor="color_normal"
+	  
+  + ViewPager với BottomNavigation
+    . https://droidmentor.com/bottomnavigationview-with-viewpager-android/
+  
+- PagerIndicatorView (dùng với ViewPager)
+  + https://github.com/romandanylyk/PageIndicatorView
+  
+- Fragment
+  + E:\Android\Lesson\Widget\Fragment
+  + https://developer.android.com/guide/components/fragments.html?hl=vi
+  
+  + Lấy Fragment từ ViewPager
+	https://learnpainless.com/android/how-to-get-fragment-from-viewpager-android
+	
+  + https://viblo.asia/p/su-khac-nhau-giua-addfragment-va-replacefragment-trong-android-LzD5dNkdZjY
+  
+- Dialog
+  + Tạo Dialog (nên dùng theo cách 1)
+    . Cách 1
+	  AlertDialog.Builder builder = new AlertDialog.Builder(context);
+	  "Các thành phần của Dialog"
+	  builder.show();
+	  
+	. Cách 2
+	  AlertDialog dialog = new AlertDialog.Builder(getContext()).create();
+	  "Các thành phần của Dialog"
+	  dialog.show();
+
+  + Dismiss Dialog
+	. https://stackoverflow.com/questions/14853325/how-to-dismiss-alertdialog-in-android
+	
+    . Khởi tạo Dialog theo cách 1
+	  > Sử dụng DialogInterface trong các hàm khởi tạo button: dialogInterface.dismiss();
+	  
+	. Khởi tạo Dialog theo cách 2
+	  > dialog.dismiss();
+	  
+  + Ẩn Title Bar: dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+  + Lấy Context
+    . Khởi tạo Dialog theo cách 1: builder.getContext();
+	. Khởi tạo Dialog theo cách 2: dialog.getContext();
+
+- BottomSheetDialogFragment
+  + https://viblo.asia/p/bottom-sheets-trong-android-WEMkBVlzkQK
+  + https://mayojava.github.io/android/bottom-sheets-android/
+  
+  + Khởi tạo view
+    . Sử dụng hàm onCreateView
+	  > Tương tự như trong Fragment
+	  
+	. Sử dụng hàm setupDialog
+	  > dialog.setContentView(R.layout.custom_layout);
+	  
+  + Sử dụng các phương thức của Dialog khi khởi tạo View bằng onCreateView
+    . getDialog."các phương thức"
+  
+- AutoCompleteTextView
+  + https://stackoverflow.com/questions/38992238/autocompletetextview-change-the-underline-color
+  + http://abhiandroid.com/ui/autocompletetextview
+  + https://www.trangti.vn/4-tren-android-khi-khoi-ong-activity-lam-sao-e-khong-chu-y-focus-vo-edit-text
+
+- SearchView
+  + http://laptrinhandroid.vn/huong-dan-searchview-trong-android/
+  + https://stackoverflow.com/questions/23658567/android-actionbar-searchview-suggestions-with-a-simple-string-array
+
+- MaterialSearchView
+  + https://github.com/MiguelCatalan/MaterialSearchView
+  
+  + Lưu ý
+    . showSearch(false)
+	  > Hiển thị luôn phần search mà không cần click button search của nó (không cần set menu)
+  
+- FloatSearchView
+  + https://viblo.asia/p/tao-thanh-search-view-theo-phong-cach-material-design-nhanh-chong-voi-thu-vien-floatingsearchview-WAyK8R7elxX (có demo github)
+    . xml
+	  > app:floatingSearch_dimBackground="boolean"
+		# set background bao quanh ô search khi mà click vào search có hiển thị hay không
+	  
+	. listener
+	  > OnFocusChangeListener
+	    # bắt sự kiện khi click vào ô tìm kiếm và khi bỏ click ở ô tìm kiếm
+		
+	  > OnSearchListener
+	    # bắt sự kiện khi click vào item gợi ý và khi click vào button search trên keyboard
+		
+	  > setOnClearSearchActionListener
+	    # bắt sự kiện khi click bào button clear (buton X)
+	  
+	. function
+	  > showProgress()
+	    # hiển thị progressBar tại button back (button mũi tên)
+		
+	  > swapSuggestions(ArrayList<Object> listSuggest)
+	    # Hiển thị ra danh sách gợi ý 
+	      @ Object là SearchSuggestion hoặc 1 lớp kế thừa từ lớp SearchSuggestion
+	      @ Giá trị trả về của hàm getBody() trong Object là cái hiện thị trên danh sách gợi ý 
+		  @ Có thể tự thay hiển thị gợi ý bằng cách cho 1 cái List ngay dưới cái FloatSearchView rồi load danh sách lên
+  
+- ProgressBar
+  + Thay đổi màu
+    . API >= 21
+	  > android:indeterminateTint="@color/colorPrimary"
+	  
+    . API < 21
+	  > progressBar.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(this,R.color.colorPrimary), PorterDuff.Mode.SRC_IN );
+
+- SeekBar
+  + https://abhiandroid.com/ui/seekbar
+  
+  + Thay đổi màu
+    . android:thumbTint="@color/colorPrimary" (màu của cái nút tròn)
+    . android:progressTint="@color/colorPrimary" (màu của phần đã chạy qua)
+	
+- WebView
+  + Lấy text được bôi đen từ webview
+    . https://stackoverflow.com/questions/34804100/how-to-get-the-selected-text-of-webview-in-actionmode-override
+	
+  + Thay đổi menu khi bôi đen text và bắt sự kiện item menu
+    . https://stackoverflow.com/questions/46176395/how-to-override-web-view-text-selection-menu-in-android
+	. http://laptrinhandroid.net.vn/analogclock-digitalclock-va-webview-trong-lap-trinh-android-phan-2.html
+	
+  + Các thẻ trong HTML
+    . http://hocwebchuan.com/reference/tag/
+
+- ImageView
+  + https://guides.codepath.com/android/Working-with-the-ImageView (set size trong hướng dẫn là theo px)
+  
+- CircleImageView
+  + https://github.com/Pkmmte/CircularImageView
+  
+- RecyclerView
+  + E:\Android\Lesson\Widget\RecyclerView
+  + Payload
+    . https://stackoverflow.com/questions/33176336/need-an-example-about-recyclerview-adapter-notifyitemchangedint-position-objec
+	. Lưu ý 
+	  > adapter.notifyItemChanged(position, object1) 
+	    -> List<Object> payloads = [object1]
+		
+	  > adapter.notifyItemChanged(position, object2)
+	    adapter.notifyItemChanged(position, object3)
+		-> List<Object> payloads = [object2, object3]
+	  
+- CardView
+  + E:\Android\Lesson\Widget\CardView
+  + http://eitguide.net/su-dung-cardview-trong-android/
+  
+- FloatActionButon
+  + https://github.com/Clans/FloatingActionButton
+  + https://xuanthulab.net/su-dung-floating-action-button-fab.html
+  + E:\Android\Lesson\Widget\Floating Action Button
+  
+- CoodinatorLayout
+  + https://xuanthulab.net/coordinatorlayout-1-xay-dung-bo-cuc-behavior-va-nested-scroll.html
+  + https://xuanthulab.net/coordinatorlayout-2-ung-dung-mot-so-loai-view.html
+  
+  + Các thuộc tính hay dùng của CollapsingToolbarLayout
+    . expandedTitle...(MarginStart, Gravity, ...)
+	  > Vị trí title ToolBar khi expand
+	  
+	. contentScrim: Background ToolBar sau khi cuộn lại
+	
+  + Lưu ý
+    . AppBarLayout
+	  > Bao gồm các View cuộn
+	  
+	. CollapsingToolbarLayout
+	  > Hiệu ứng Expand/Collapse khi cuộn của các View trong CollapsingToolbarLayout
+	  
+	. AppBarLayout sẽ scroll khi có sự kiện Nested Scroll của View nào đó trong CoodinatorLayout
+	  > Ví dụ
+	    # RecylerView, NestedScrollView -> được
+		  ScrollView -> không được
+			   
+	. layout_scrollFlags
+	  > Thiết lập xem khi nào thì cuộn
+	  
+	. layout_collapseMode
+	  > Thiết lập view có scroll khi AppBarLayout scroll không
+	  
+	. layout_behavior
+	  > Tạo ứng xử giữa các View
+	  > @string/appbar_scrolling_view_behavior (layout_behavior có sẵn)
+	    # Dùng để bám vào view phía trên nó
+	    # Có thể sử dụng cách khác là dùng include view
+		
+	. theme (trong AppBarLayout)
+	  > Chọn style có parent="ThemeOverlay.AppCompat.Dark.ActionBar" thì "title" sẽ màu trắng
+	  
+	. expandedTitleTextAppearance (trong CollapsingToolbarLayout)
+	  > Chọn style có parent="@android:style/TextAppearance" sẽ thiết lập thuộc tính cho title khi expand
+	  > các thuộc tính (textSize, textColor, ...) sẽ được thiết lập trong style
+	  
+	. Sự kiện khi scroll AppBarLayout
+	  > https://stackoverflow.com/questions/31662416/show-collapsingtoolbarlayout-title-only-when-collapsed?fbclid=IwAR1VcBjHe6lOJV9RGYHfQzitv5FiTsoXRA_CSzfDYrW4_bvE7dxW6n1q-Ow
+	  
+- StickyScrollView
+  + https://github.com/amarjain07/StickyScrollView
+  
+  + Lưu ý
+    . Nếu muốn dùng StickyScrollView với CoodinatorLayout thì phải custom lại library của StickyScrollView là extend từ NestedScrollView
+	. Mặc định ban đầu là đang extend từ ScrollView
+	
+- StickyHeader
+  + https://github.com/smhdk/KM-Recyclerview-Sticky-Header
+			 
+- SwipeLayout
+  + https://github.com/chthai64/SwipeRevealLayout
+  
+- RadioGroup và RadioButton
+  + RadioGroup có mọi tính chất của LinearLayout
+  
+- RatingBar
+  + https://developer.android.com/reference/android/widget/RatingBar
+  + https://stackoverflow.com/questions/37879347/custom-ratingbar
+  + Kích thước của RatingBar phụ thuộc theo ảnh custom trong Drawable
+  
+3. Làm việc với luồng
+- Khái niệm về Thread
+  + https://viblo.asia/p/gioi-thieu-ve-thread-trong-android-3P0lPypg5ox
+  + https://viblo.asia/p/thread-handler-va-asynctask-trong-android-3P0lPyp85ox
+  
+- So sánh Thread, Handle, AsyncTask, Service, IntentService
+  + https://androidcoban.com/sanh-thread-handler-asynctask-service-intentservice.html
+  
+- AsyncTask
+  + https://developer.android.com/reference/android/os/AsyncTask.html
+  + https://viblo.asia/p/thread-handler-va-asynctask-trong-android-3P0lPyp85ox
+  + https://viblo.asia/p/xu-ly-da-tien-trinh-trong-android-bang-asynctask-ZDEeLRMpvJb 
+  
+- RxJava, RxAndroid
+  + https://viblo.asia/p/cung-hoc-rxjava-phan-1-gioi-thieu-aRBeXWqgGWE
+  + https://viblo.asia/p/cung-hoc-rxjava-phan-2-threading-concept-MgNeWWwXeYx  
+  + https://github.com/amitshekhariitbhu/RxJava2-Android-Samples
+  + https://livelaptrinh.wordpress.com/category/rxjava2/
+  
+4. Giao tiếp mobile với server
+- Kết nối mobile với server local
+  + URL lấy dữ liệu là URL khi dùng localhost nhưng thay "localhost" thành địa chỉ chỉ ip (IPv4) đang dùng
+    . Ví dụ
+	  > URL trên localhost
+	    # http://localhost/project/public/getData
+		
+	  > URL dùng trên mobile
+	    # http://192.168.0.100/project/public/getData
+  
+- Download file từ server
+  + https://stackoverflow.com/questions/16773348/set-custom-folder-android-download-manager
+  + https://developer.android.com/reference/android/app/DownloadManager.html
+  + https://developer.android.com/reference/android/app/DownloadManager.Request.html#setDestinationInExternalPublicDir(java.lang.String, java.lang.String)4
+  
+- Volley (Đọc dữ liệu từ internet trả về, chỉ làm việc với network)
+  + https://developer.android.com/training/volley/index.html
+  
+- Retrofit
+  + https://square.github.io/retrofit/
+  + https://androidcoban.com/tim-hieu-su-dung-thu-vien-networking-retrofit-2-0.html
+  + https://code.tutsplus.com/vi/tutorials/getting-started-with-retrofit-2--cms-27792
+  
+- FireBase
+  + Kết nối app với firebase thì dùng Firebase Assistant
+    . https://firebase.google.com/docs/android/setup
+	
+  + CRUD xem tại Doc của FireBase
+    . Ví dụ truy vấn list dữ liệu
+	  > https://firebase.google.com/docs/database/android/lists-of-data
+	  
+  + Hủy sự kiện của firebase
+    . databaseReference.removeEventListener(eventListener)
+  
+- Json
+  + http://json.org/
+  
+  + Tool
+    . Json format
+	  > hiển thị rõ ràng định dạng chuỗi json
+	  
+	. Json schemars
+	  > convert những biến của json về những biến của java
+  
+5. Xử lý file, ảnh, âm thanh, animation...
+- File picker
+  + https://developer.android.com/guide/topics/providers/document-provider?hl=vi
+  + https://stackoverflow.com/questions/9923760/how-to-use-intent-for-choosing-file-browser-to-select-file
+  
+  + Library
+    . https://github.com/fishwjy/MultiType-FilePicker (xem latestVersion tại Version Log bên dưới)
+	. https://github.com/bartwell/ExFilePicker
+	. https://github.com/adityak368/Android-FileBrowser-FilePicker
+	
+- SharedPreferences
+  + https://thangcoder.com/lap-trinh-android/hoc-lap-trinh-android-nang-cao/shared-preferences-trong-android-la-gi
+
+- Ghi file
+  + https://developer.android.com/guide/topics/data/data-storage#filesInternal
+
+- Đọc, ghi file
+  + http://giasutinhoc.vn/lap-trinh-java-co-ban/doc-va-ghi-file-trong-java-bai-5/  
+  
+- Load Ảnh
+  + Load ảnh từ URL
+    . https://stackoverflow.com/questions/5776851/load-image-from-url
+	
+  + Load ảnh với thư viện Picasso
+    . http://square.github.io/picasso/
+	
+  + Load ảnh với thư viện Glide (load được cả ảnh động)
+    . https://github.com/bumptech/glide 
+	. E:\Android\Lesson\Handle Image\Load Image with Glide
+	
+- MediaPlayer
+  + https://viblo.asia/p/tim-hieu-mediaplayer-trong-android-ORNZq99bZ0n
+  + https://developer.android.com/guide/topics/media/mediaplayer
+  
+- MediaStore
+  + https://sandersdenardi.com/querying-and-removing-media-from-android-mediastore/
+  
+- Lấy danh sách và các thông số (id, tên, ca sĩ, đường dẫn,...) file audio từ thiết bị
+  + E:\Android\Lesson\Handle Audio - Video\List all songs from storage in Android Studio.mp4
+
+- Lấy ảnh được đính kèm theo file mp3
+  + https://stackoverflow.com/questions/16284241/get-embedded-mp3-file-embedded-art-failed
+  
+- Xóa file ở media store mp3 (chỉ xóa trong media store chứ không xóa file thật)
+  + context.getContentResolver().delete(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, MediaStore.MediaColumns.DATA + "='" + path + "'", null);
+  
+- Các phương thức cho ứng dụng nghe nhạc
+  + https://tutorialsface.blogspot.com/2014/07/music-player-with-notification-and-lock.html
+	
+- Thay đổi tốc độ nói của audio
+  + https://stackoverflow.com/questions/10849961/speed-control-of-mediaplayer-in-android
+  + http://www.wallacezhen.com/index.php/2017/07/04/android-mediaplayer-set-playback-speed/
+	
+- Animation
+  + https://developer.android.com/guide/topics/resources/animation-resource.html
+  + http://giasutinhoc.vn/phat-trien-app-android/animation-trong-android-bai-7/
+  
+  + Các trường hợp (x: chiều ngang, y: chiều dọc)
+    . alpha
+	  > Độ trong suốt (0 – 1) 
+	  
+	. rotate
+	  > Độ xoay
+	  
+	. scale
+	  > Thay đổi hình dạng to nhỏ theo 2 hướng x, y (Tương tự rotate, cẩn chỉnh cả 2 hướng)
+	  
+	. translate
+	  > Di chuyển theo 2 hướng x,y (Chỉnh 1 hoặc 2 hướng)
+	
+  + Sử dụng với intent
+    . Dùng hàm dưới ngay sau hàm startActivity
+    . overridePendingTransition(anim1, anim2);
+	
+  + Sử dụng với listview
+    . Gán animation cho view trong adapter trước khi trả về
+  
+6. Intent - Notification
+- Notification
+  + https://viblo.asia/p/media-and-notification-in-android-notification-BAQ3vVgWRbOr
+  + https://developer.android.com/guide/topics/ui/notifiers/notifications
+  + http://www.tutorialsface.com/2015/08/android-custom-notification-tutorial/
+  
+  + CustomView Notification (sử dụng RemoteViews)
+    . RemoteViews remoteViews = new RemoteViews(getPackageName(), R.layout.myLayout);
+	. setCustomContentView(remoteViews);
+	
+	. Tương tự với setCustomBigContentView()
+	
+  + Bắt sự kiện cho item view notification (sử dụng PendingIntent)
+    . Xử lý qua Service
+	  > pendingIntent.getService();
+	  
+	. Xử lý qua BroadcastReceiver
+	  > pendingIntent.getBroadcast();
+	  
+	. Mở Activity
+	  > pendingIntent.getActivity();
+	  
+	. remoteViews.setOnClickPendingIntent(R.id.myButton, pendingIntent);
+	
+  + Lưu ý
+    . Nên chọn height cho layout notification là 56dp vs màn hình 360dp
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
