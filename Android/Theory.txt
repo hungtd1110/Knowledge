@@ -360,6 +360,9 @@
 		-	onDestroyView()
 			-	Được gọi khi View của Fragment bị xóa
 
+		-	onDestroy()
+			-	
+
 		-	onDetach()
 			-	Được gọi khi Fragment không liên quan gì đến Activity nữa
 
@@ -520,7 +523,9 @@
 		-	https://thangcoder.com/lap-trinh-android/hoc-lap-trinh-android-nang-cao/sqlite-trong-lap-trinh-android
 		-	E:\Android\Lesson\Database\CSDL SQLite (Thang Coder)
 
-7.	View
+7.	Room
+
+8.	View
 	-	Vòng đời
 		-	onAttachedToWindow()
 			-	Gắn view vào Window

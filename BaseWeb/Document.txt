@@ -1,0 +1,74 @@
+1. Loại thẻ HTML
+	-	None
+		-	Không hiển thị nội dung bên trong
+
+	-	Block
+		-	Hiển thị nội dung bên trong và hết chiều ngang tràn trình duyệt
+
+	-	Inline
+		-	Hiển thị nội dung bên trong và chiều ngang phụ thuộc vào độ dài các đối tượng bên trong khối, các đối tượng nằm trên 1 dòng
+
+	-	Note
+		-	Chuyển thẻ dạng Block -> Inline (Sử dụng CSS)
+			-	display:inline;
+
+		-	Chuyển thẻ dạng Inline -> Block (Sử dụng CSS)
+			-	display:block;
+
+	-	Link
+		-	https://www.w3schools.com/html/html_blocks.asp
+
+2. Nhóm định dạng CSS
+	-	Type group
+		-	Khái niệm
+			-	Định dạng cho văn bản
+
+		-	Thuộc tính thường dùng
+			-	font-family (Font chữ)
+			-	font-size (Kích thước chữ)
+			-	font-style (Kiểu chữ nghiêng, thẳng)
+			-	font-variant (Kiểu chữ thường, hoa)
+			-	font-weight (Kiểu chữ đậm, nhạt)
+			-	line-height (Độ cách dòng)
+			-	text-transform (Kiểu chữ thường, hoa)
+			-	text-decoration (Kiểu chữ có gạch)
+			-	color (Màu)
+
+	-	Background group
+		-	Khái niệm
+			-	Định dạng nền
+
+		-	Thuộc tính thường dùng
+			-	background-color (Màu nền)
+			-	background-image (Ảnh nền)
+			-	background-repeat (Kiểu hiển thị ảnh nền)
+			-	background-position (Vị trí hiển thị ảnh nền)
+			-	background-attachment (Hình nền cố định khi scroll)
+
+	-	Block group
+		-	Khái niệm
+			-	Định dạng cho văn bản
+
+		-	Thuộc tính thường dùng
+			-	letter-spacing (Khoảng cách các ký tự)
+			-	word-spacing (Khoảng cách các từ)
+			-	text-align (Vị trí văn bản)
+			-	text-indent (Khoảng cách lùi đầu dòng)
+			-	white-space (Định dạng khoảng trắng)
+			-	vertical-align (Ví trí phần tử)
+			-	display (Hiển thị kiểu block, inline)
+
+	-	Border group
+		- Định dạng viền
+
+	-	Box group
+		- Định dạng kích thước, vị trí khối
+
+	-	List group
+		-	Định dạng danh sách
+
+	-	Position group
+		-	Định dạng tọa độ phần tử
+
+	-	Link
+		-	https://www.w3schools.com/cssref/default.asp		
