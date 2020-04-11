@@ -566,6 +566,35 @@
 		(http://eitguide.net/nhung-kien-thuc-ve-view-trong-android-ma-cac-ban-nen-biet/
 		https://tuanfadbg.com/?s=canvas)
 
+9.	Firebase
+	-	Cloud Message
+		-	Notification messages
+			-	Khái niệm
+				-	Thông báo được gửi tự động từ FCM
+				-	Cấu trúc thông báo cố định theo Firebase (Object là notification)
+
+			-	Nhận thông báo
+				-	Khay hệ thống khi ứng dụng ở Background
+					-	Tự hiển thị giao diện thông báo
+					-	Không vào onMessageReceived()
+
+				-	onMessageReceived() khi ứng dụng ở Foreground
+					-	Không tự hiển thị giao diện thông báo (dev build thông báo)
+
+		-	Data messages
+			-	Khái niệm
+				-	Thông báo được xử lý ở client
+				-	Cấu trúc thông báo có thể tùy chỉnh (Object là data)
+
+			-	Nhận thông báo
+				-	onMessageReceived()
+					-	Không tự hiển thị giao diện thông báo (dev build thông báo)
+
+		-	Link
+			-	https://viblo.asia/p/thong-bao-notification-trong-android-voi-firebase-cloud-messaging-phan-1-Az45bmYLlxY
+			-	https://viblo.asia/p/thong-bao-notification-trong-android-voi-firebase-cloud-messaging-phan-2-Qbq5QMLw5D8
+			-	https://firebase.google.com/docs/cloud-messaging
+
 
 
 
