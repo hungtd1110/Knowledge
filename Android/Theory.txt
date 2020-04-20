@@ -578,11 +578,11 @@
 				-	Cấu trúc thông báo cố định theo Firebase (Object là notification)
 
 			-	Nhận thông báo
-				-	Khay hệ thống: Khi ứng dụng ở Background
+				-	Khi ứng dụng ở Background: Nhận ở khay hệ thống
 					-	Tự hiển thị giao diện thông báo
 					-	Không vào onMessageReceived()
 
-				-	onMessageReceived(): Khi ứng dụng ở Foreground
+				-	Khi ứng dụng ở Foreground: Nhận ở onMessageReceived()
 					-	Không tự hiển thị giao diện thông báo (dev build thông báo)
 
 		-	Data messages
