@@ -259,7 +259,7 @@
 		        </receiver>
 
 		    -	TH2: Class extends Broadcast Receiver là 1 lớp con trong 1 lớp khác (Lớp con phải là static class)
-		    	<receiver android:name="."Activity$MyReceiver">
+		    	<receiver android:name=".Activity$MyReceiver">
 		            <intent-filter>
 		                <action android:name="..." />
 		            </intent-filter>
@@ -578,11 +578,11 @@
 				-	Cấu trúc thông báo cố định theo Firebase (Object là notification)
 
 			-	Nhận thông báo
-				-	Khay hệ thống khi ứng dụng ở Background
+				-	Khay hệ thống: Khi ứng dụng ở Background
 					-	Tự hiển thị giao diện thông báo
 					-	Không vào onMessageReceived()
 
-				-	onMessageReceived() khi ứng dụng ở Foreground
+				-	onMessageReceived(): Khi ứng dụng ở Foreground
 					-	Không tự hiển thị giao diện thông báo (dev build thông báo)
 
 		-	Data messages
