@@ -858,9 +858,30 @@
 		
 	. https://viblo.asia/p/design-pattern-in-oop-part-1-WrJvYKdAeVO
 	. https://viblo.asia/p/singleton-pattern-trong-java-aWj53838K6m
+
+- Glide và Picasso
+  + Glide: 
+  	. Load theo vòng đời Activity/Fragment (Glide sẽ tạm dừng tải ảnh khi Activity/Fragment đang ở trạng thái Paused, và nó sẽ tự động tiếp tục khi Activity/Fragment quay trở lại trạng thái Resumed)
+  	. Load được ảnh gif
+  + Picaso: 	
 	
-	
-	
+- Retrofit
+  + Là thư viện kết nối tới REST API	
+
+- RxJava, RxAndroid
+  + Là thư viện xử lý đồng bộ, bất đồng bộ
+  	. Observable.from...()
+  		> Nhận vào từng item và phát ra từng item
+  		> Nếu item là mảng (list thì được coi như là 1 item) thì sẽ nhận từng phần tử của mảng và phát ra từng phần tử đó
+  		> Nhận giá trị khi Observe
+
+  	. Observable.just()
+  		> Nhận vào từng item và phát ra từng item (mảng cũng được coi là 1 item)
+  		> Nhận giá trị khi Observe
+
+  	. Observable.defer()
+  		>
+  		> Nhận giá trị khi Subscribe  
 	
 	
 	
